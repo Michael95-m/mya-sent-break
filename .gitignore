@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#data file
+data
+venv/
+
+nb/
+
+.mya-sent-break 
+break.py
