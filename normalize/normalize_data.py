@@ -1,6 +1,5 @@
 import numpy as np 
 import pandas as pd
-# from sent_level_order import sent_level_norm
 
 DICT_STRING = ' ၀၁၂၃၄၅၆၇၈၉၊။'
 
