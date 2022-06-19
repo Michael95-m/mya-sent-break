@@ -1,0 +1,10 @@
+emoji==1.7.0
+numpy==1.22.4
+pandas==1.4.2
+pybind11==2.9.2
+pyidaungsu==0.0.8
+python-crfsuite==0.9.8
+python-dateutil==2.8.2
+pytz==2022.1
+six==1.16.0
+tqdm==4.64.0
