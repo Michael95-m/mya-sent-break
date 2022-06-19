@@ -23,11 +23,11 @@ class sent_break_syl:
 
         return json_data 
 
-    def __find_end_syl(self, syl_sent_ls):
+    def find_end_syl(self, syl_sent_ls):
 
         return [ i for i, syl in enumerate(syl_sent_ls) if syl in set(self.end_syl_ls) ]
 
-    def __find_break_index(self, syl_sent_ls, end_index_ls, show_log=False):
+    def find_break_index(self, syl_sent_ls, end_index_ls, show_log=False):
         break_index_ls = []
 
         for index in end_index_ls:
@@ -51,13 +51,13 @@ class sent_break_syl:
             two_gram_break_ok = False 
             three_gram_break_ok = False 
 
-            if len(self.break_one_gram_prev[end_syl].keys()) == 0 or\
+            if len(self.break_one_gram_prev[end_syl].keys()) == 0 or \
                 prev_syl in self.break_one_gram_prev[end_syl].keys():
                 one_gram_break_ok = True 
-            if len(self.break_two_gram_prev[end_syl].keys()) == 0 or\
+            if len(self.break_two_gram_prev[end_syl].keys()) == 0 or \
                 prev_syl in self.break_two_gram_prev[end_syl].keys():
                 two_gram_break_ok = True 
-            if len(self.break_three_gram_prev[end_syl].keys()) == 0  or\
+            if len(self.break_three_gram_prev[end_syl].keys()) == 0  or \
                 prev_syl in self.break_three_gram_prev[end_syl].keys():
                 three_gram_break_ok = True 
 
@@ -71,8 +71,10 @@ class sent_break_syl:
             if not prev_break_or_not:
                 if show_log:
                     print(f'break failed for {end_syl}')
-                    print('-'*10)
                 continue
+            
+            if show_log:
+                print('-'*10)
                        
             next_syl, next_two_gram_syl, next_three_gram_syl = None, None, None 
 
@@ -86,8 +88,6 @@ class sent_break_syl:
             two_gram_ok = True
             three_gram_ok = True
 
-            print(next_syl, next_two_gram_syl, next_three_gram_syl)
-
             if next_syl is not None:
                 if len(self.no_break_one_gram_next[end_syl].keys()) != 0 \
                     and next_syl in self.no_break_one_gram_next[end_syl].keys():
@@ -95,15 +95,10 @@ class sent_break_syl:
             if next_two_gram_syl is not None:
                 if len(self.no_break_two_gram_next[end_syl].keys()) != 0 \
                     and next_two_gram_syl in self.no_break_two_gram_next[end_syl].keys():
-                    # if show_log:
-                    #     print('next two gram syl failed')
                     two_gram_ok = False
             if next_three_gram_syl is not None:
                 if len(self.no_break_three_gram_next[end_syl].keys()) != 0 \
                     and next_three_gram_syl in self.no_break_three_gram_next[end_syl].keys():
-                    # if show_log:
-                    #     print('next three gram syl failed')
-                    #     print('-'*30)
                     three_gram_ok = False
 
             break_or_not =   one_gram_ok and two_gram_ok and three_gram_ok
@@ -129,8 +124,8 @@ class sent_break_syl:
     def break_sent(self, sent, show_log=False):
 
         syl_sent_ls = pds.tokenize(sent)
-        end_index_ls = self.__find_end_syl(syl_sent_ls)
-        break_index_ls = self.__find_break_index(syl_sent_ls, end_index_ls, show_log)
+        end_index_ls = self.find_end_syl(syl_sent_ls)
+        break_index_ls = self.find_break_index(syl_sent_ls, end_index_ls, show_log)
         syl_sent_break = self.chg_into_dummy(syl_sent_ls, break_index_ls)
 
         return syl_sent_break       

@@ -89,9 +89,6 @@ class Normalization(object):
         text = self.validate_sequence(text)
         if chk_prerule_fix:
             text = self.pre_rule_fix(text)
-        # except:
-        #     print(text)
-        #     pass
         return text
     
 def del_miss_char(corpus_main_ls):
