@@ -5,16 +5,16 @@ import json
 
 class sent_break_syl:
 
-    def __init__(self):
+    def __init__(self, fld_path):
         
-        with open('data_syl/end_syl.txt') as f:
+        with open(f'{fld_path}/end_syl.txt') as f:
             self.end_syl_ls = [line.strip() for line in f]
-        self.break_one_gram_prev = self.__load_data('data_syl/break_one_gram_prev.json')
-        self.break_two_gram_prev = self.__load_data('data_syl/break_two_gram_prev.json')
-        self.break_three_gram_prev = self.__load_data('data_syl/break_three_gram_prev.json')
-        self.no_break_one_gram_next = self.__load_data('data_syl/no_break_one_gram_next.json')
-        self.no_break_two_gram_next = self.__load_data('data_syl/no_break_two_gram_next.json')
-        self.no_break_three_gram_next = self.__load_data('data_syl/no_break_three_gram_next.json')
+        self.break_one_gram_prev = self.__load_data(f'{fld_path}/break_one_gram_prev.json')
+        self.break_two_gram_prev = self.__load_data(f'{fld_path}/break_two_gram_prev.json')
+        self.break_three_gram_prev = self.__load_data(f'{fld_path}/break_three_gram_prev.json')
+        self.no_break_one_gram_next = self.__load_data(f'{fld_path}/no_break_one_gram_next.json')
+        self.no_break_two_gram_next = self.__load_data(f'{fld_path}/no_break_two_gram_next.json')
+        self.no_break_three_gram_next = self.__load_data(f'{fld_path}/no_break_three_gram_next.json')
 
     def __load_data(self, json_loc):
 
