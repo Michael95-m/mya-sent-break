@@ -136,3 +136,5 @@ nb/
 
 .mya-sent-break 
 break.py
+errorlog
+logfile
