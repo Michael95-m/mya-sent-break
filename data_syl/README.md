@@ -10,12 +10,15 @@ This is the file containing the syllables which can be the end of the sentence.
 The sentence can be ended if the previous syl and the sentence ending syl matches. Example.
 
 ```json
-"တယ်": 
-{
-        "ပါ": 2006,
-        "ရ": 106,
-        "နေ": 118
-}
+"တယ်": [
+        "ကောင်း",
+        "ချင်",
+        "လာ",
+        "ပါ",
+        "ကြ",
+        "သွား",
+        "ကြိုက်"
+]
 ```
 
 The word "တယ်" can be the end of the sentence when its previous syllable is "ပါ". eg. ပါ တယ် ။ 
@@ -33,12 +36,17 @@ Same concept with break_one_gram_prev.json except it checks between three previo
 The sentence can't be ended if this syllable exists next to the sentence ending syllable. Example.
 
 ```json
-"တယ်": {
-        "ဆို": 76,
-        "ရှင့်": 81,
-        "နော်": "နော်",
-        "လို့" : "လို့"
-    }
+"တယ်": [
+        "တဲ့",
+        "ဆို",
+        "နော်",
+        "လေ",
+        "အစ်",
+        "ပေါ့",
+        "မ",
+        "လို့",
+        "ရှင့်"
+    ]
 ```
 The word "တယ်" can not be the end of the sentence if its next syllable is "ဆို", "ရှင့်", "နော်" and "လို့". 
  eg. တယ် ဆို, တယ် ရှင့်, တယ် နော်, တယ် လို့. 
