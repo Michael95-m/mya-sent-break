@@ -138,3 +138,5 @@ nb/
 break.py
 errorlog
 logfile
+sample_data
+.vscode/
