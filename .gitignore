@@ -140,3 +140,5 @@ errorlog
 logfile
 sample_data
 .vscode/
+access_log
+error_log
