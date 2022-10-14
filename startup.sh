@@ -1,2 +1,2 @@
 #!/bin/sh
-gunicorn --bind 0.0.0.0:5000 wsgi:app
+gunicorn  -c gunicorn_conf.py app:app

@@ -1,6 +1,12 @@
+from multiprocessing import cpu_count
+
 bind = '0.0.0.0:5000'
-worker_class = 'sync'
+
+# Worker Options
+workers = cpu_count() + 1
+worker_class = 'uvicorn.workers.UvicornWorker'
+
+# Logging Options
 loglevel = 'debug'
-accesslog = 'logfile'
-acceslogformat ="%(h)s %(l)s %(u)s %(t)s %(r)s %(s)s %(b)s %(f)s %(a)s"
-errorlog =  'errorlog'
+accesslog = 'access_log'
+errorlog =  'error_log'
