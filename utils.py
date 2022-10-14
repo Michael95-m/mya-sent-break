@@ -1,5 +1,3 @@
-import pandas as pd
-from tqdm import tqdm
 import pyidaungsu as pds
 import json
 
@@ -110,15 +108,26 @@ class sent_break_syl:
                 two_gram_next_break, two_gram_look_prev = self.not_break_gram_check(end_syl, next_two_gram_syl, 2)
                 three_gram_next_break, three_gram_look_prev = self.not_break_gram_check(end_syl, next_three_gram_syl, 3)
 
+                if show_log:
+                    print(f"current syl is {end_syl}")
+                    print(f"one_gram_next_break is {one_gram_next_break}")
+                    print(f"two_gram_next_break is {two_gram_next_break}")
+                    print(f"three_gram_next_break is {three_gram_next_break}")
+
                 ## use next cases 
                 is_break_next = one_gram_next_break and two_gram_next_break and three_gram_next_break
                 look_prev = one_gram_look_prev or two_gram_look_prev or three_gram_look_prev
 
+                if show_log:
+                    print(f"break or not based on next syl is {is_break_next}")
+                    print(f"look prev based on current syl is {look_prev}")
+
                 if is_break_next:
                     break_index_ls.append(index)
+                    print()
                     continue 
 
-                if look_prev:
+                if look_prev and is_break_next:
 
                 ## if looking prev is needed
                     prev_syl, prev_two_gram_syl, prev_three_gram_syl = None, None, None
@@ -148,9 +157,18 @@ class sent_break_syl:
                         prev_three_gram_syl in self.break_three_gram_prev[end_syl]:
                         three_gram_prev_break = True 
 
+                    if show_log:
+                        print(f"one_gram_prev_break is {one_gram_prev_break}")
+                        print(f"two_gram_prev_break is {two_gram_prev_break}")
+                        print(f"three_gram_prev_break is {three_gram_prev_break}")
+
                     ## use "or"  operator unlike next cases
                     ## because if one matches, it's ok to break
                     is_break_prev = one_gram_prev_break or two_gram_prev_break or three_gram_prev_break 
+
+                    if show_log:
+                        print(f"break or not based on prev syl is {is_break_prev}")
+                        print()
 
                     if is_break_prev:
                         break_index_ls.append(index)
